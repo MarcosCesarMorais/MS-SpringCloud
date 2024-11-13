@@ -1,5 +1,7 @@
 package br.com.mcm.ms_api_products.api.DTO;
 
+import java.time.LocalDate;
+
 import br.com.mcm.ms_api_products.entities.Product;
 
 public interface ProductMapper {
@@ -12,5 +14,18 @@ public interface ProductMapper {
                 product.getCreatedAt(),
                 product.getUpdatedAt(),
                 product.getActive());
+    }
+
+    static Product toEntity(final ProductRequest request) {
+        final String id = null;
+        final LocalDate createdAt = null;
+        final LocalDate updatedAt = null;
+        return Product.with(
+                id,
+                request.name(),
+                request.price(),
+                createdAt,
+                updatedAt,
+                false);
     }
 }

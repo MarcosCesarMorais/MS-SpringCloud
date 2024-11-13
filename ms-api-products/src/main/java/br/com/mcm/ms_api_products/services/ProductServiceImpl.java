@@ -51,6 +51,11 @@ public class ProductServiceImpl implements ProductService {
         if (product.getPrice() != null) {
             productOnBase.setPrice(product.getPrice());
         }
+        if (product.getActive()) {
+            productOnBase.activate();
+        } else {
+            productOnBase.deactivate();
+        }
 
         return productRepository.save(productOnBase);
     }

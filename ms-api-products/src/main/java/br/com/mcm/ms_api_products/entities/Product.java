@@ -59,6 +59,25 @@ public class Product {
                 product.getUpdatedAt(), product.getActive());
     }
 
+    public static Product updateProduct(final String name, final Double price, final Boolean active) {
+        String id = null;
+        LocalDate createdAt = null;
+        LocalDate updatedAt = null;
+        return new Product(id, name, price, createdAt, updatedAt, active);
+    }
+
+    public Product activate() {
+        this.updatedAt = LocalDate.now();
+        this.active = true;
+        return this;
+    }
+
+    public Product deactivate() {
+        this.updatedAt = LocalDate.now();
+        this.active = false;
+        return this;
+    }
+
     public String getId() {
         return id;
     }

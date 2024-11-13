@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,8 +51,8 @@ public class ProductController implements ProductOpenApi {
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponse create(@RequestBody ProductRequest request) {
-        var product = Product.newProduct(request.name(), request.price());
+    public ProductResponse create(@RequestBody ProductRequest productRequest) {
+        var product = Product.newProduct(productRequest.name(), productRequest.price());
         var productSave = ProductMapper.mapper(productService.create(product));
 
         LOG.info(String.format("Product with ID %s, created successfully", productSave.id()));
@@ -62,13 +63,19 @@ public class ProductController implements ProductOpenApi {
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponse> update(@PathVariable String id, @RequestBody ProductRequest request) {
-        var productOnBase = ProductMapper. 
+        var productRequest = Product.updateProduct(request.name(), request.price(), request.active());
+        var productUpdated = ProductMapper.mapper(productService.update(id, productRequest));
+        return ResponseEntity.ok(productUpdated);
     }
 
     @Override
-    public ResponseEntity<Void> delete(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        productService.deleteById(id);
+        LOG.info(String.format("Product with ID %s, delete successfully", id));
+
+        return ResponseEntity.noContent().build();
     }
 
 }
