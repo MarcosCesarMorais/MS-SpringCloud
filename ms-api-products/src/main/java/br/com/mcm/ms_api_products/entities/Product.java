@@ -31,6 +31,9 @@ public class Product {
     @Column(name = "ativo", nullable = false)
     private Boolean active;
 
+    public Product() {
+    }
+
     private Product(final String id, final String name, final Double price, final LocalDate createdAt,
             final LocalDate updatedAt, final Boolean active) {
         this.id = id;

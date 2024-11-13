@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
@@ -38,7 +37,7 @@ public class ProductController implements ProductOpenApi {
 
     @Override
     @GetMapping("/{id}")
-    public ProductResponse findById(@PathVariable String id) {
+    public ProductResponse findById(@PathVariable(name = "id") String id) {
         return ProductMapper.mapper(productService.findById(id));
     }
 
@@ -71,7 +70,7 @@ public class ProductController implements ProductOpenApi {
     @Override
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> delete(@PathVariable String id) {
+    public ResponseEntity<Void> delete(@PathVariable(name = "id") String id) {
         productService.deleteById(id);
         LOG.info(String.format("Product with ID %s, delete successfully", id));
 
