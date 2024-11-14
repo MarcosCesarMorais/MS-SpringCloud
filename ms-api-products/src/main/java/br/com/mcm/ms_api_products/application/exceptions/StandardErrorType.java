@@ -1,4 +1,4 @@
-package br.com.mcm.ms_api_products.exceptions;
+package br.com.mcm.ms_api_products.application.exceptions;
 
 public enum StandardErrorType {
 

@@ -2,7 +2,7 @@ package br.com.mcm.ms_api_products.api.DTO;
 
 import java.time.LocalDate;
 
-import br.com.mcm.ms_api_products.entities.Product;
+import br.com.mcm.ms_api_products.infrastructure.entities.Product;
 
 public interface ProductMapper {
 

@@ -1,4 +1,4 @@
-package br.com.mcm.ms_api_products.entities;
+package br.com.mcm.ms_api_products.infrastructure.entities;
 
 import java.time.LocalDate;
 
@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_produto")
@@ -25,10 +26,10 @@ public class Product {
     @Column(name = "data_criacao", nullable = false)
     private LocalDate createdAt;
 
-    @Column(name = "data_alteracao", nullable = false)
+    @Column(name = "data_alteracao")
     private LocalDate updatedAt;
 
-    @Column(name = "ativo", nullable = false)
+    @Column(name = "ativo")
     private Boolean active;
 
     public Product() {

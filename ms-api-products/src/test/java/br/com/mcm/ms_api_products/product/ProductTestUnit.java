@@ -26,10 +26,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import br.com.mcm.ms_api_products.entities.Product;
-import br.com.mcm.ms_api_products.exceptions.ObjectNotFoundException;
-import br.com.mcm.ms_api_products.repositories.ProductRepository;
-import br.com.mcm.ms_api_products.services.ProductServiceImpl;
+import br.com.mcm.ms_api_products.application.exceptions.ObjectNotFoundException;
+import br.com.mcm.ms_api_products.application.services.ProductServiceImpl;
+import br.com.mcm.ms_api_products.infrastructure.entities.Product;
+import br.com.mcm.ms_api_products.infrastructure.repositories.ProductRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductTestUnit {

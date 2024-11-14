@@ -1,4 +1,4 @@
-package br.com.mcm.ms_api_products.services;
+package br.com.mcm.ms_api_products.application.services;
 
 import java.util.Objects;
 
@@ -7,16 +7,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.mcm.ms_api_products.entities.Product;
-import br.com.mcm.ms_api_products.exceptions.ObjectNotFoundException;
-import br.com.mcm.ms_api_products.repositories.ProductRepository;
+import br.com.mcm.ms_api_products.application.exceptions.ObjectNotFoundException;
+import br.com.mcm.ms_api_products.infrastructure.entities.Product;
+import br.com.mcm.ms_api_products.infrastructure.repositories.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
 
-    private static final String PRODUCT_NOT_FOUND = "Product with ID -> %d not found";
+    private static final String PRODUCT_NOT_FOUND = "Product with ID -> %s not found";
 
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;

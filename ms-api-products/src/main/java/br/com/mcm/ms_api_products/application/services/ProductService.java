@@ -1,9 +1,9 @@
-package br.com.mcm.ms_api_products.services;
+package br.com.mcm.ms_api_products.application.services;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import br.com.mcm.ms_api_products.entities.Product;
+import br.com.mcm.ms_api_products.infrastructure.entities.Product;
 
 public interface ProductService {
 

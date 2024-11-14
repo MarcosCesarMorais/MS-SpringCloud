@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.mcm.ms_api_products.api.DTO.ProductMapper;
 import br.com.mcm.ms_api_products.api.DTO.ProductRequest;
 import br.com.mcm.ms_api_products.api.DTO.ProductResponse;
-import br.com.mcm.ms_api_products.api.controllers.openApi.ProductOpenApi;
-import br.com.mcm.ms_api_products.entities.Product;
-import br.com.mcm.ms_api_products.services.ProductServiceImpl;
+import br.com.mcm.ms_api_products.api.openApi.ProductOpenApi;
+import br.com.mcm.ms_api_products.application.services.ProductServiceImpl;
+import br.com.mcm.ms_api_products.infrastructure.entities.Product;
+import jakarta.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +51,7 @@ public class ProductController implements ProductOpenApi {
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponse create(@RequestBody ProductRequest productRequest) {
+    public ProductResponse create(@Valid @RequestBody ProductRequest productRequest) {
         var product = Product.newProduct(productRequest.name(), productRequest.price());
         var productSave = ProductMapper.mapper(productService.create(product));
 
@@ -61,7 +62,7 @@ public class ProductController implements ProductOpenApi {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> update(@PathVariable String id, @RequestBody ProductRequest request) {
+    public ResponseEntity<ProductResponse> update(@PathVariable String id, @Valid @RequestBody ProductRequest request) {
         var productRequest = Product.updateProduct(request.name(), request.price(), request.active());
         var productUpdated = ProductMapper.mapper(productService.update(id, productRequest));
         return ResponseEntity.ok(productUpdated);
